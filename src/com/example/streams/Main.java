@@ -50,7 +50,7 @@ public class Main {
 		final int[] a = new int[]{0};
 		Supplier<Integer> supplier = ()->a[0]++;
 
-		Stream stream2 = Stream.generate(supplier).limit(100).parallel();
+		Stream stream2 = Stream.generate(supplier).limit(100).sequential();
 		stream2.forEach(System.out::println);
 	}
 }
