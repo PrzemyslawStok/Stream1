@@ -3,6 +3,7 @@ package com.example.streams;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,5 +46,11 @@ public class Main {
 
 		ArrayList<Integer> array = stream1.filter(a->a%2==0).collect(Collectors.toCollection(ArrayList::new));
 		System.out.println(array);
+
+		final int[] a = new int[]{0};
+		Supplier<Integer> supplier = ()->a[0]++;
+
+		Stream stream2 = Stream.generate(supplier).limit(100).parallel();
+		stream2.forEach(System.out::println);
 	}
 }
